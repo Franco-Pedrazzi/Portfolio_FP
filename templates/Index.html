@@ -1,0 +1,20 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<h2>examples</h2>
+    <form method="POST" action="/api/example">
+        <input type="text" name="example" placeholder="example">
+        <button type="submit">Agregar</button>
+    </form>
+
+
+<div id="ShowExamples">
+        {% for example in examples %}
+            <li>
+                {{ example.id_example }} - {{ example.nombre }}
+    
+            </li>
+        {% endfor %}
+</div>
+
+{% endblock %}

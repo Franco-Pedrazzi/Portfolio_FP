@@ -1,0 +1,19 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<h2>Login</h2>
+<form action="/login" method="POST">
+  {{ form.csrf_token }}
+  {{ form.user.label }} {{ form.user(size=20) }}
+  <br>
+  {{ form.password.label }} {{ form.password(size=20,type="password") }}
+  <br>
+  <input type="submit" value="Login">
+</form>
+{% if info!="" and info!="True" %}
+<h3>{{info}}</h3>
+{% endif %}
+<div id="mensaje"></div>
+
+
+{% endblock %}

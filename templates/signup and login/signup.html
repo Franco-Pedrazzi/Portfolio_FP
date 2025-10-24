@@ -1,0 +1,22 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<div style="align-items: center;">
+
+<form action="/signup" method="POST">
+  {{ form.csrf_token }}
+  {{ form.name.label }} {{ form.name(size=20) }}
+  <br>
+  {{ form.user.label }} {{ form.user(size=20) }}
+  <br>
+  {{ form.password.label }} {{ form.password(size=20,type="password") }}
+  <br>
+  <input type="submit" value="Signup">
+</form>
+
+{% if info!="" and info!="True" %}
+<h3>{{info}}</h3>
+{% endif %}
+</div>
+
+{% endblock %}
