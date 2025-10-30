@@ -1,7 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body{
-    background-color:#7a9e9f ;
-    font-family: "Archivo Black", sans-serif;
+    background-color:#474852 ;
+    font-family:sans-serif;
     font-style: normal;
+    color: black;
+    
+}
+h1{
+    font-family: "Archivo Black", sans-serif !important;
+}
+#login{
+    
+    font-family: Arial !important;
+    font-style: normal !important;
+}
+
+nav button{
+    background: none;
+    border: 0cm;
+}
+.bg-body-tertiary {
+    --bs-bg-opacity: 1;
+    background-color:rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    color: white;
 }
