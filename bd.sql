@@ -9,11 +9,33 @@ CREATE TABLE `usuario` (
 );
 
 CREATE TABLE `info` (
-  `cv` VARCHAR(400) not NULL,
-  `` VARCHAR(400) not NULL,
+   id int auto_increment primary key,
+  `tipo` VARCHAR(50),
+  `tamano` BIGINT,
+  `pixel` LONGBLOB,
+  `sobre_mi` VARCHAR(400) not NULL,
+  `tel` VARCHAR(400) not NULL,
+  `mail` VARCHAR(400) not NULL,
+  `dir` VARCHAR(400) not NULL,
+  `edad` int not NULL
+);
+CREATE TABLE `Experiencia` (
+  id int auto_increment primary key,
+  exp VARCHAR(400) not NULL
+);
+
+CREATE TABLE `Proyectos` (
+ id int auto_increment primary key,
+  pro VARCHAR(400) not NULL
+);
+
+CREATE TABLE `EDUCACIÓN` (
+id int auto_increment primary key,
+  edu VARCHAR(400) not NULL
 );
 
 create TABLE `links` (
+   id int auto_increment primary key,
   `name` VARCHAR(400) not NULL,
   `url` VARCHAR(400) not NULL
 );
