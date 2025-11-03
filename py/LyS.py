@@ -30,10 +30,8 @@ def load_user(email):
 
 class Usuario(UserMixin, db.Model):
     __tablename__ = 'usuario'
-    nombre = db.Column(db.String(40))
     email = db.Column(db.String(40),primary_key=True)
     contraseña = db.Column(db.String(200))
-    rango = db.Column(db.String(20))
 
     def get_id(self):
         return self.email 
