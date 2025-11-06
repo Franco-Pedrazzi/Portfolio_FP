@@ -40,3 +40,5 @@ create TABLE `links` (
   `url` VARCHAR(400) not NULL
 );
 
+insert into Portfolio.usuario values ('yuro2105@gmail.com', 'scrypt:32768:8:1$dOxTmky4Y7jQwiuA$082705d7615c5bc3573d42bd3a74976cd62385090f1ab7ee7179c8447bfd9f1cf160d6b36a43591719e36fcef3c246c4f1dedc428b9b125ede8ec2bf5bee9da5'
+);

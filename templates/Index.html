@@ -2,9 +2,66 @@
 
 {% block body %}
 <h1>Portfolio FP</h1>
-<center>
-<br>
 
+<center>
+{% if current_user.email and Len==0 %}
+<form method="POST" action="/Info/agregar" enctype="multipart/form-data">
+    
+    <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
+    
+    <input type="text" name="tel" placeholder="tel"><br>
+    <input type="text" name="mail" placeholder="mail"><br>
+    <input type="text" name="dir" placeholder="dir"><br>
+    <textarea class="myLargeTextArea" name="sobre_mi" rows="10" cols="50" placeholder="sobre mi..."></textarea>
+   <button type="submit">Agregar</button>
+</form>
+{% elif current_user.email %}
+<form method="post" action="/Info/editar" enctype="multipart/form-data">
+    <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
+
+        <img src="data:{{ Info.0.tipo }};base64,{{ pixel }}"
+        style="width:15%; height:15%; object-fit:cover; margin:5px; border-radius: 50%;">
+
+
+        <br>
+    <h6>Telefono:<input type="text" name="tel" value="{{Info.0.tel}}" placeholder="tel" required></h6>
+    <h6>Mail:<input name="mail" type="text" value="{{Info.0.mail}}" placeholder="mail" required></h6>
+    <h6>dir:<input name="dir" type="text" value="{{Info.0.dir}}" placeholder="dir" required></h6>
+    <br>
+    <br>
+    <textarea class="myLargeTextArea"   name="sobre_mi" rows="10" cols="50" placeholder="sobre mi...">{{Info.0.sobre_mi}}</textarea>
+    <br>
+    <button type="submit">editar</button>
+
+</form>
+{% else %}
+       <div class="card">
+		<div class="card" style="--glow: rgb(233, 143, 74);" tabindex="0">
+			<div class="card-details">
+                 <img src="data:{{ Info.0.tipo }};base64,{{ pixel }}"
+        style="width:100%; height:100%; object-fit:cover; margin:5px; border-radius: 50%;">
+
+<h6>Telefono: {{Info.0.tel}}</h6>
+<h6>Mail: {{Info.0.mail}}</h6>
+<h6>Direccion: {{Info.0.dir}}</h6>
+			</div>
+
+			<div class="card-design">
+				<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMax meet" width="640" height="640" viewBox="0 0 640 640" filter="url(#filter-fireflies)">
+					<circle id="firefly1" cx="0" cy="0" r="4" />
+					<circle id="firefly2" cx="0" cy="0" r="3" />
+					<circle id="firefly3" cx="0" cy="0" r="2" />
+					<circle id="firefly4" cx="0" cy="0" r="2" />
+				</svg>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<h5>{{Info.0.sobre_mi}}</h5>
+{% endif %}
 </center>
 
 

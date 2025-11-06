@@ -14,17 +14,14 @@ def Index():
     experiencias = Experiencia.query.order_by(Experiencia.id).all()
     proyectos = Proyectos.query.order_by(Proyectos.id).all()
 
-    for info in infos:
-        if info.pixel:
-            info.pixel = base64.b64encode(info.pixel).decode("utf-8")
 
+    pixel = base64.b64encode(infos[0].pixel).decode("utf-8")
+
+    Len=len(infos)
     return render_template(
-        'Index.html',
-        Links=links,
-        Info=infos,
-        Educacion=educaciones,
-        Experiencia=experiencias,
-        Proyectos=proyectos
+        'Index.html',Links=links,Info=infos,
+        Educacion=educaciones,Experiencia=experiencias,
+        Proyectos=proyectos,Len=Len,pixel=pixel
     )
 
 

@@ -42,38 +42,73 @@ def validate_fields(data, required):
     missing = [f for f in required if f not in data or data[f] is None]
     return missing
 
-@apis.route("/api/info", methods=["POST"])
-def add_info():
-    data = request.get_json()
-    required = ["sobre_mi", "tel", "mail", "dir", "edad"]
-    missing = validate_fields(data, required)
-    if missing:
-        return jsonify(success=False, error=f"Faltan campos: {', '.join(missing)}"), 400
-    nuevo = Info(**{k: data.get(k) for k in ["tipo", "tamano", "pixel", "sobre_mi", "tel", "mail", "dir", "edad"]})
-    db.session.add(nuevo)
-    db.session.commit()
-    return jsonify(success=True, info={"id": nuevo.id})
+@apis.route("/Info/agregar", methods=["POST","Get"])
+def add_Info():
+    data = request.form
 
-@apis.route("/api/info/<int:id_info>", methods=["PUT"])
-def update_info(id_info):
-    info = Info.query.get(id_info)
-    if not info:
-        return jsonify(success=False, error="Info no encontrada"), 404
-    data = request.get_json()
-    for k in ["tipo", "tamano", "pixel", "sobre_mi", "tel", "mail", "dir", "edad"]:
-        if k in data:
-            setattr(info, k, data[k])
-    db.session.commit()
-    return jsonify(success=True, info={"id": info.id})
+    archivo = request.files.get("archivo")
 
-@apis.route("/api/info/<int:id_info>", methods=["DELETE"])
-def delete_info(id_info):
-    info = Info.query.get(id_info)
-    if not info:
-        return jsonify(success=False, error="Info no encontrada"), 404
-    db.session.delete(info)
-    db.session.commit()
-    return jsonify(success=True, deleted=id_info)
+    tipo = ""
+    tamano = 0
+    pixel = None
+
+    tipo = archivo.content_type
+    pixel = archivo.read()
+    tamano = len(pixel)
+
+    nuevo = Info(
+        tipo = tipo,
+        tamano = tamano,
+        pixel = pixel,
+        sobre_mi = data.get("sobre_mi"),
+        tel = data.get("tel"),
+        mail = data.get("mail"),
+        dir = data.get("dir"),
+        edad = 0 
+    )
+
+    try:
+        db.session.add(nuevo)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return f"Error al guardar: {e}", 500
+
+    return redirect("/")
+
+@apis.route("/Info/editar", methods=["POST","Get"])
+def update_info():
+    data = request.form
+    info=Info.query.first()
+    archivo = request.files.get("archivo")
+    
+    tipo = ""
+    tamano = 0
+    pixel = None
+    if archivo:
+        tipo = archivo.content_type
+        pixel = archivo.read()
+        tamano = len(pixel)
+        info.tipo = tipo
+        info.tamano = tamano
+        info.pixel = pixel
+        
+    info.sobre_mi = data.get("sobre_mi")
+    info.tel = data.get("tel")
+    info.mail = data.get("mail")
+    info.dir = data.get("dir")
+
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return f"Error al guardar: {e}", 500
+
+    return redirect("/")
+
+
+
 
 @apis.route("/url", methods=["POST"])
 def add_url():
@@ -91,3 +126,4 @@ def delete_url(id):
     db.session.delete(link)
     db.session.commit()
     return redirect("/")
+
