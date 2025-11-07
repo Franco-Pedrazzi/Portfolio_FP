@@ -161,7 +161,7 @@ def add_carrusel():
 
     return redirect("/")
 
-@apis.route("/carrusel/delete/<int:id>")
+@apis.route("/cell/delete/<int:id>")
 def carrusel_url(id):
     cell = carrusel.query.get_or_404(id)
     db.session.delete(cell)

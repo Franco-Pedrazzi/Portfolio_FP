@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect,url_for
+from flask import Flask, redirect
 from flask_cors import CORS
 from flask_login import  login_required, logout_user
 

@@ -17,7 +17,9 @@ def Index():
     
     pixeles_cell=[]
     pixel_info=""
+    Indexes_cells=[]
     for cell in Carrusel:
+        Indexes_cells.append(cell.id)
         pixeles_cell.append( base64.b64encode(cell.pixel).decode("utf-8"))
     Len=len(infos)
     if Len!=0:
@@ -28,7 +30,7 @@ def Index():
         Educacion=educaciones,Experiencia=experiencias,
         Proyectos=proyectos,Len=Len,pixel=pixel_info,
         carrusel=Carrusel,pixeles_cell=pixeles_cell,
-        len_carrucel=len_carrucel
+        len_carrucel=len_carrucel,Indexes_cells=Indexes_cells
     )
 
 

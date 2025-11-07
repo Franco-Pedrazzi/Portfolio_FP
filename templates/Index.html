@@ -1,28 +1,37 @@
 {% extends "./base.html" %}
 
 {% block body %}
-<div id="carouselExampleIndicators" class="carousel slide">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+  
+
+<div id="carouselExampleIndicators" data-bs-ride="carousel" class="carousel slide">
   <div class="carousel-indicators">
     {% if len_carrucel>0 %}
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     {% endif %}
-    {% for i in range(len_carrucel) %}
+    {% for i in range(1,len_carrucel) %}
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{i}}" aria-label="Slide {{i+1}}"></button>
     {% endfor %}
 </div>
-  <div class="carousel-inner">
+  <div class="carousel-inner" style="text-align: center;">
     {% if len_carrucel>0 %}
     <div class="carousel-item active">
-     <a style="z-index: 10;" href="/cell/delete/{{0}}">
+       {% if current_user.is_authenticated %}
+          <a style="text-align: center;" href="/cell/delete/{{Indexes_cells.0}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
+       {% endif %} 
+      <img src="data:{{ carrusel.0.tipo }};base64,{{ pixeles_cell.0}}" class="d-block w-100" alt="...">
 
-        <img src="data:{{ carrusel.0.tipo }};base64,{{ pixeles_cell.0 }}" class="d-block w-100" alt="...">
     </div>
     {% endif %}
     {% for i in range(1,len_carrucel) %}
-    <div class="carousel-item">
-        <a href="/cell/delete/{{carrusel.id}}">
+    <div class="carousel-item" style="text-align: center;">
+      {% if current_user.is_authenticated %}
+      <a style="text-align: center;" href="/cell/delete/{{Indexes_cells[i]}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
+      {% endif %}
       <img src="data:{{ carrusel[i].tipo }};base64,{{ pixeles_cell[i] }}" class="d-block w-100" alt="...">
-      </div>
+
+    </div>
     {% endfor %}
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -34,7 +43,7 @@
   </button>
 </div>
 </div>
-<img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
+
 {% if current_user.email %}
 <form method="POST" action="/carrusel/agregar" enctype="multipart/form-data">
     
@@ -80,15 +89,17 @@
     
                     <img src="data:{{ Info.0.tipo }};base64,{{ pixel }}"
                     style="width:25%; height:25%; object-fit:cover; margin:5px; border-radius: 50%;">
-                    <div style="text-decoration:underline;">
-                    <h6>Telefono: {{Info.0.tel}}</h6>
-                    <h6>Mail: {{Info.0.mail}}</h6>
-                    <h6>Direccion: {{Info.0.dir}}</h6>
-                    </div>
 
+                    <h6><img src="/static/images/phone_icon.png" style="height: 20px;width: 20px;" alt=""> {{Info.0.tel}}</h6>
+                    <h6><img src="/static/images/mail_icon.png" style="height: 20px;width: 20px;" alt=""> {{Info.0.mail}}</h6>
+                    <h6><img src="/static/images/map_icon.webp" style="height: 15px;width: 10px;" alt=""> {{Info.0.dir}}</h6>
+                    <br>
+                    <br>
+                    
                     <h5>{{Info.0.sobre_mi}}</h5>
-
-
+                    <br>
+                    <br>
+                    <h1>Proyectos</h1>
 
 {% endif %}
 </center>
