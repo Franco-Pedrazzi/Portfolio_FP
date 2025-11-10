@@ -49,7 +49,7 @@
     
     <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
     
-|   <button type="submit">Agregar</button>
+   <button type="submit">Agregar</button>
 </form>
 {% endif %}
 <h1>Portfolio FP</h1>
@@ -99,8 +99,54 @@
                     <h5>{{Info.0.sobre_mi}}</h5>
                     <br>
                     <br>
-                    <h1>Proyectos</h1>
+                    
+{% endif %}
+<h1>Proyectos</h1>
+{% if current_user.email %}
+<form method="POST" action="/Proyecto/agregar" enctype="multipart/form-data">
+    <input type="text" name="titulo" placeholder="titulo" ><br>
+    <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
+    <textarea class="myLargeTextArea" name="descripcion" rows="10" cols="50" placeholder="descripcion"></textarea>
+    <input type="text" name="link" placeholder="link"><br>
 
+    <button type="submit">Agregar</button>
+</form>
+<br>
+                  {% for proyecto in Proyectos %}
+                  <div style="display: flex;">
+                  <form method="POST" action="/Proyecto/editar/{{proyecto.id}}" enctype="multipart/form-data">
+                    <input type="text" name="titulo" placeholder="titulo" value="{{proyecto.titulo}}"><br>
+                    <div style="display: flex;">
+                    <textarea class="myLargeTextArea" name="descripcion" rows="10" cols="50" placeholder="descripcion">{{proyecto.descripcion}}</textarea>
+                    <div>
+                    <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
+                    <img src="data:{{ proyecto.tipo }};base64,{{ pixel_proyecto[Proyectos.index(proyecto)] }}"
+                    style="width:75%; height:75%;">
+                    </div>
+                    </div>
+                    <input type="text" name="link" placeholder="link" value="{{proyecto.link}}"><br>
+                <button type="submit">editar</button>
+                  </form>
+                  <a  style="margin-top: 10%;" href="/Proyecto/delete/{{proyecto.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
+
+                  </div>
+
+                  <br>
+                  <br>
+                  {% endfor %}
+{% else %}
+                  {% for proyecto in Proyectos %}
+                  <h2>{{proyecto.titulo}}</h2>
+                    <div style="display: flex;gap:25%;margin-left: 15%;">
+                  <h5>{{proyecto.descripcion}}</h5>
+                   <img src="data:{{ proyecto.tipo }};base64,{{ pixel_proyecto[Proyectos.index(proyecto)] }}"
+                    style="width:33%; height:33%;">
+                    
+                    </div>
+                    <a href="{{proyecto.link}}" target="_blank">{{proyecto.link}}</a>
+                  <br>
+                  <br>
+                  {% endfor %}
 {% endif %}
 </center>
 

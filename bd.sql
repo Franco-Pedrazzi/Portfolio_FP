@@ -26,7 +26,12 @@ CREATE TABLE `Experiencia` (
 
 CREATE TABLE `Proyectos` (
  id int auto_increment primary key,
-  pro VARCHAR(400) not NULL
+ `tipo` VARCHAR(50),
+ `tamano` BIGINT,
+ `pixel` LONGBLOB,
+ `descripcion` VARCHAR(400) not NULL,
+ `titulo` VARCHAR(50) not NULL,
+ `link` VARCHAR(100) not NULL
 );
 
 CREATE TABLE `EDUCACIÓN` (

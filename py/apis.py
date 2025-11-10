@@ -25,7 +25,13 @@ class Experiencia(db.Model):
 class Proyectos(db.Model):
     __tablename__ = "Proyectos"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    pro = db.Column(db.String(400), nullable=False)
+    tipo = db.Column(db.String(50))
+    tamano = db.Column(db.BigInteger)
+    pixel = db.Column(db.LargeBinary)
+    descripcion = db.Column(db.String(400), nullable=False)
+    titulo = db.Column(db.String(50), nullable=False)
+    link = db.Column(db.String(100), nullable=False)
+
 
 class Educacion(db.Model):
     __tablename__ = "EDUCACIÓN"
@@ -165,6 +171,75 @@ def add_carrusel():
 def carrusel_url(id):
     cell = carrusel.query.get_or_404(id)
     db.session.delete(cell)
+    db.session.commit()
+    return redirect("/")
+
+@apis.route("/Proyecto/agregar", methods=["POST","Get"])
+def add_Proyect():
+    data = request.form
+
+    archivo = request.files.get("archivo")
+
+    tipo = ""
+    tamano = 0
+    pixel = None
+
+    tipo = archivo.content_type
+    pixel = archivo.read()
+    tamano = len(pixel)
+
+    nuevo = Proyectos(
+        tipo = tipo,
+        tamano = tamano,
+        pixel = pixel,
+        descripcion = data.get("descripcion"),
+        link = data.get("link"),
+        titulo = data.get("titulo")
+    )
+
+    try:
+        db.session.add(nuevo)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return f"Error al guardar: {e}", 500
+
+    return redirect("/")
+
+@apis.route("/Proyecto/editar/<int:id>", methods=["POST","Get"])
+def update_Proyect(id):
+    data = request.form
+    Proyecto=Proyectos.query.filter_by(id=id).first()
+    archivo = request.files.get("archivo")
+    
+    tipo = ""
+    tamano = 0
+    pixel = None
+    if archivo:
+        tipo = archivo.content_type
+        pixel = archivo.read()
+        tamano = len(pixel)
+        Proyecto.tipo = tipo
+        Proyecto.tamano = tamano
+        Proyecto.pixel = pixel
+        
+    Proyecto.descripcion = data.get("descripcion")
+    Proyecto.link = data.get("link")
+    Proyecto.titulo = data.get("titulo")
+
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return f"Error al guardar: {e}", 500
+
+    return redirect("/")
+
+@apis.route("/Proyecto/delete/<int:id>")
+def delete_Proyecto(id):
+    Proyecto = Proyectos.query.get_or_404(id)
+    db.session.delete(Proyecto)
     db.session.commit()
     return redirect("/")
 
