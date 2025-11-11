@@ -10,11 +10,10 @@
 </head>
 
 <body class="bg-gradient">
-<!-- #2A2F34 #7a9e9f #E09F3E #FFFFFF #B0413E  -->
-
+<div id="allNav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
     <div class="container-fluid">
-      <button class="navbar-brand" onclick="location.href='http://127.0.0.1:5000/'">Portfolio FP</button>
+      <button class="navbar-brand" onclick="location.href='/'">Portfolio FP</button>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
               aria-expanded="false" aria-label="Toggle navigation">
@@ -23,18 +22,21 @@
 
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <button class="btn btn-dark" style="color: rgb(189, 189, 189);" onclick="location.href='http://127.0.0.1:5000/'">Features</button>
-          <button class="btn btn-dark" style="color: rgb(189, 189, 189)" onclick="location.href='http://127.0.0.1:5000/'">Pricing</button>
+          <button class="btn btn-dark" style="color: rgb(189, 189, 189)" onclick="location.href='/#Proyectos'">Proyectos</button>
+          <button class="btn btn-dark" style="color: rgb(189, 189, 189)" onclick="location.href='/#Proyectos'">Pricing</button>
           {% if not current_user.email %}
           <button onclick="location.href='http://127.0.0.1:5000/login'" type="button" class="btn btn-outline-warning">Login</button>
           {% else %}
            <button type="button" onclick="location.href='/logout'"  class="btn btn-danger">logout</button>
           {% endif %} 
+
         </div>
       </div>
     </div>
   </nav>
 <div style="background-color: #E09F3E; height:10px;width: 100%;"></div>
+
+</div>
 <div style="margin: 2%;">
   {% block body %}{% endblock %}
 

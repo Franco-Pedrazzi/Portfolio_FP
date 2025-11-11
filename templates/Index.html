@@ -17,21 +17,15 @@
   <div class="carousel-inner" style="text-align: center;">
     {% if len_carrucel>0 %}
     <div class="carousel-item active">
-       {% if current_user.is_authenticated %}
-          <a style="text-align: center;" href="/cell/delete/{{Indexes_cells.0}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
-       {% endif %} 
-      <img src="data:{{ carrusel.0.tipo }};base64,{{ pixeles_cell.0}}" class="d-block w-100" alt="...">
-
-    </div>
+      <a href="/#{{Proyectos[0].titulo}}"><img src="data:{{ Proyectos.0.tipo }};base64,{{ pixel_proyecto.0}}" class="d-block w-100" alt="...">
+        </a>
+      </div>
     {% endif %}
     {% for i in range(1,len_carrucel) %}
     <div class="carousel-item" style="text-align: center;">
-      {% if current_user.is_authenticated %}
-      <a style="text-align: center;" href="/cell/delete/{{Indexes_cells[i]}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
-      {% endif %}
-      <img src="data:{{ carrusel[i].tipo }};base64,{{ pixeles_cell[i] }}" class="d-block w-100" alt="...">
-
-    </div>
+      <a href="/#{{Proyectos[i].titulo}}"><img src="data:{{ Proyectos[i].tipo }};base64,{{ pixel_proyecto[i] }}" class="d-block w-100" alt="...">
+    </a>
+      </div>
     {% endfor %}
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -43,15 +37,6 @@
   </button>
 </div>
 </div>
-
-{% if current_user.email %}
-<form method="POST" action="/carrusel/agregar" enctype="multipart/form-data">
-    
-    <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
-    
-   <button type="submit">Agregar</button>
-</form>
-{% endif %}
 <h1>Portfolio FP</h1>
 
 <center>
@@ -101,20 +86,17 @@
                     <br>
                     
 {% endif %}
-<h1>Proyectos</h1>
-{% if current_user.email %}
-<form method="POST" action="/Proyecto/agregar" enctype="multipart/form-data">
-    <input type="text" name="titulo" placeholder="titulo" ><br>
-    <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
-    <textarea class="myLargeTextArea" name="descripcion" rows="10" cols="50" placeholder="descripcion"></textarea>
-    <input type="text" name="link" placeholder="link"><br>
-
-    <button type="submit">Agregar</button>
-</form>
+<div id="Proyectos">
 <br>
+<br>
+<br>
+<h1>Proyectos</h1>
+
+  {% if current_user.email %}
                   {% for proyecto in Proyectos %}
-                  <div style="display: flex;">
-                  <form method="POST" action="/Proyecto/editar/{{proyecto.id}}" enctype="multipart/form-data">
+                  <div id="{{proyecto.titulo }}" style="display: flex;">
+                  <br>
+                    <form method="POST" action="/Proyecto/editar/{{proyecto.id}}" enctype="multipart/form-data">
                     <input type="text" name="titulo" placeholder="titulo" value="{{proyecto.titulo}}"><br>
                     <div style="display: flex;">
                     <textarea class="myLargeTextArea" name="descripcion" rows="10" cols="50" placeholder="descripcion">{{proyecto.descripcion}}</textarea>
@@ -134,11 +116,22 @@
                   <br>
                   <br>
                   {% endfor %}
+                <form method="POST" action="/Proyecto/agregar" enctype="multipart/form-data">
+                    <input type="text" name="titulo" placeholder="titulo" ><br>
+                    <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
+                    <textarea class="myLargeTextArea" name="descripcion" rows="10" cols="50" placeholder="descripcion"></textarea>
+                    <input type="text" name="link" placeholder="link"><br>
+
+                    <button type="submit">Agregar</button>
+                </form>
+<br>
 {% else %}
                   {% for proyecto in Proyectos %}
-                  <h2>{{proyecto.titulo}}</h2>
+                  <div id="{{proyecto.titulo }}">
+                  <br>
+                  <h2 >{{proyecto.titulo}}</h2>
                     <div style="display: flex;gap:25%;margin-left: 15%;">
-                  <h5>{{proyecto.descripcion}}</h5>
+                  <h5 style="width: 30%;">{{proyecto.descripcion}}</h5>
                    <img src="data:{{ proyecto.tipo }};base64,{{ pixel_proyecto[Proyectos.index(proyecto)] }}"
                     style="width:33%; height:33%;">
                     
@@ -146,8 +139,12 @@
                     <a href="{{proyecto.link}}" target="_blank">{{proyecto.link}}</a>
                   <br>
                   <br>
+                  </div>
+
                   {% endfor %}
 {% endif %}
+</div>
+
 </center>
 
 

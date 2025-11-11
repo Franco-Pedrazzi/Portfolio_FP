@@ -32,7 +32,6 @@ class Proyectos(db.Model):
     titulo = db.Column(db.String(50), nullable=False)
     link = db.Column(db.String(100), nullable=False)
 
-
 class Educacion(db.Model):
     __tablename__ = "EDUCACIÓN"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -44,16 +43,13 @@ class Links(db.Model):
     name = db.Column(db.String(400), nullable=False)
     url = db.Column(db.String(400), nullable=False)
 
-class carrusel(db.Model):
-    __tablename__ = "carrusel"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    tipo = db.Column(db.String(50))
-    tamano = db.Column(db.BigInteger)
-    pixel = db.Column(db.LargeBinary)
+
 
 def validate_fields(data, required):
     missing = [f for f in required if f not in data or data[f] is None]
     return missing
+
+
 
 @apis.route("/Info/agregar", methods=["POST","Get"])
 def add_Info():
@@ -122,7 +118,6 @@ def update_info():
 
 
 
-
 @apis.route("/url", methods=["POST"])
 def add_url():
     if request.method == 'POST':
@@ -140,39 +135,7 @@ def delete_url(id):
     db.session.commit()
     return redirect("/")
 
-@apis.route("/carrusel/agregar", methods=["POST","Get"])
-def add_carrusel():
-    archivo = request.files.get("archivo")
 
-    tipo = ""
-    tamano = 0
-    pixel = None
-
-    tipo = archivo.content_type
-    pixel = archivo.read()
-    tamano = len(pixel)
-
-    nuevo = carrusel(
-        tipo = tipo,
-        tamano = tamano,
-        pixel = pixel
-    )
-
-    try:
-        db.session.add(nuevo)
-        db.session.commit()
-    except Exception as e:
-        db.session.rollback()
-        return f"Error al guardar: {e}", 500
-
-    return redirect("/")
-
-@apis.route("/cell/delete/<int:id>")
-def carrusel_url(id):
-    cell = carrusel.query.get_or_404(id)
-    db.session.delete(cell)
-    db.session.commit()
-    return redirect("/")
 
 @apis.route("/Proyecto/agregar", methods=["POST","Get"])
 def add_Proyect():
