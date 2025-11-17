@@ -141,6 +141,8 @@ def delete_url(id):
 def add_Proyect():
     data = request.form
 
+
+
     archivo = request.files.get("archivo")
 
     tipo = ""
@@ -197,7 +199,7 @@ def update_Proyect(id):
         db.session.rollback()
         return f"Error al guardar: {e}", 500
 
-    return redirect("/")
+    return redirect(f"/#{data.get("titulo")}")
 
 @apis.route("/Proyecto/delete/<int:id>")
 def delete_Proyecto(id):
