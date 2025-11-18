@@ -29,7 +29,7 @@ def Index():
     
     return render_template(
         'Index.html',Links=links,Info=infos,
-        Educacion=educaciones,Experiencia=experiencias,
+        Educaciones=educaciones,Experiencias=experiencias,
         Proyectos=proyectos,Len=Len,pixel=pixel_info
         ,pixeles_cell=pixeles_cell,len_carrucel=len_carrucel,
         Indexes_cells=Indexes_cells,pixel_proyecto=pixel_proyecto

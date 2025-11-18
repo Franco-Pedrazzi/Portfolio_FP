@@ -208,3 +208,80 @@ def delete_Proyecto(id):
     db.session.commit()
     return redirect("/")
 
+
+
+@apis.route("/Experiencia/agregar", methods=["POST","Get"])
+def add_Experiencia():
+    data = request.form
+    experiencia=data.get("Experiencia")
+    nuevo = Experiencia(
+        exp = experiencia
+    )
+    try:
+        db.session.add(nuevo)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+
+    return redirect(f"/#{experiencia}")
+
+@apis.route("/Experiencia/editar/<int:id>", methods=["POST","Get"])
+def update_Experiencia(id):
+    data = request.form
+    _Experiencia=Experiencia.query.filter_by(id=id).first()
+       
+    _Experiencia.exp = data.get("Experiencia")
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return f"Error al guardar: {e}", 500
+
+    return redirect(f"/#{_Experiencia.exp }")
+
+@apis.route("/Experiencia/delete/<int:id>")
+def delete_Experiencia(id):
+    _Experiencia = Experiencia.query.get_or_404(id)
+    db.session.delete(_Experiencia)
+    db.session.commit()
+    return redirect("/#Experiencias")
+
+
+
+@apis.route("/Educacion/agregar", methods=["POST","Get"])
+def add_Educacion():
+    data = request.form
+    educacion=data.get("Educacion")
+    nuevo = Educacion(
+        exp = educacion
+    )
+    try:
+        db.session.add(nuevo)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+
+    return redirect(f"/#{educacion}")
+
+@apis.route("/Educacion/editar/<int:id>", methods=["POST","Get"])
+def update_Educacion(id):
+    data = request.form
+    _Educacion=Educacion.query.filter_by(id=id).first()
+       
+    _Educacion.exp = data.get("Educacion")
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return f"Error al guardar: {e}", 500
+
+    return redirect(f"/#{_Educacion.exp }")
+
+@apis.route("/Educacion/delete/<int:id>")
+def delete_Educacion(id):
+    _Educacion= Educacion.query.get_or_404(id)
+    db.session.delete(_Educacion)
+    db.session.commit()
+    return redirect("/#Educacion")
