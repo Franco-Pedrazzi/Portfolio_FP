@@ -165,7 +165,7 @@
                   </div>
 
                   <a  style="margin-top: 10%;" href="/Experiencia/delete/{{Experiencia.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
-                  </div>
+
 
                   <br>
                   <br>
@@ -176,23 +176,21 @@
                   </form>
 <br>
 {% else %}
-                  {% for Experiencia in Experiencias %}
 <ul style="max-width: 75%;   
            word-wrap: break-word; 
            overflow-wrap: break-word; 
            white-space: normal;">
-    <br>
+    {% for Experiencia in Experiencias %}
     <li>
 <h5>{{Experiencia.exp}}</h5>
     </li>
-    
-    <br>
-    <br>
-</ul>
-                  {% endfor %}
+{% endfor %}
+  </ul>   
 {% endif %}
 </div>
-</div>
+
+
+
 <div id="Educacion">
 <br>
 <br>
@@ -209,8 +207,8 @@
                   </form>
                   </div>
 
-                  <a  style="margin-top: 10%;" href="/Educacion/delete/{{Experiencia.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
-                  </div>
+                  <a  style="margin-top: 10%;" href="/Educacion/delete/{{Educacion.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
+                 
 
                   <br>
                   <br>
@@ -221,20 +219,20 @@
                   </form>
 <br>
 {% else %}
-                  {% for Educacion in Educaciones %}
+                  
+
 <ul style="max-width: 75%;   
            word-wrap: break-word; 
            overflow-wrap: break-word; 
            white-space: normal;">
-    <br>
+    {% for Educacion in Educaciones %}
     <li>
 <h5>{{Educacion.edu}}</h5>
     </li>
-    
-    <br>
-    <br>
-</ul>
-                  {% endfor %}
+{% endfor %}
+  </ul>   
+
+                  
 {% endif %}
 </div>
 </center>

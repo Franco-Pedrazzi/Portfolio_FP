@@ -254,7 +254,7 @@ def add_Educacion():
     data = request.form
     educacion=data.get("Educacion")
     nuevo = Educacion(
-        exp = educacion
+        edu = educacion
     )
     try:
         db.session.add(nuevo)
@@ -269,7 +269,7 @@ def update_Educacion(id):
     data = request.form
     _Educacion=Educacion.query.filter_by(id=id).first()
        
-    _Educacion.exp = data.get("Educacion")
+    _Educacion.edu = data.get("Educacion")
 
     try:
         db.session.commit()
@@ -277,7 +277,7 @@ def update_Educacion(id):
         db.session.rollback()
         return f"Error al guardar: {e}", 500
 
-    return redirect(f"/#{_Educacion.exp }")
+    return redirect(f"/#{_Educacion.edu }")
 
 @apis.route("/Educacion/delete/<int:id>")
 def delete_Educacion(id):
