@@ -1,28 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
-    color-scheme: light dark;
-    font-size: clamp(.625rem,.47rem + .829vw,1rem);
-    box-sizing: inherit;
-    --bg-color: #10151d;
-    --white-color: #f2f6fa;
-    --light-gray: #bfc1c9;
-    --main-color: #a87ffb;
-    --gray-border: #2e3c51;
-    --link-color: #a87ffbcc;
-    background-color: var(--bg-color);
-    color: var(--white-color);
-    margin: 0;
+    background-color: rgb(54, 91, 109);
+
 }
 h1{
-    font-family: "Archivo Black", Georgia, serif;
-    text-decoration: underline;
+    font-size: 1em;
+    font-weight: 400px;
+    font-family: YADK4PDlAAM_0, auto;
+    color: rgb(65, 193, 186);
+    text-decoration-thickness: initial;
+    text-decoration-style: initial;
 }
 
 h2{
-    font-family: "Archivo Black",sans-serif !important;
+    font-size: 1em;
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(167, 255, 239);
+    font-kerning: none;
+    text-decoration-line: none;
+    text-decoration-thickness: initial;
+    text-decoration-style: initial; 
+}
+
+h5,h3,h4,h6{
     
+    font-size: 1em;
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(167, 255, 239);
+    font-kerning: none;
+    text-decoration-line: none;
+    text-decoration-thickness: initial;
+    text-decoration-style: initial;
+
+}
+a{
+    color:rgb(0, 162, 255);
+}
+
+#Proyectos img{
+    border: 2px solid white;
+    border-radius: 15%;
+    border-width: 10px;
+}
+.iframe{
+    padding: 10px !important;
+    background-color:rgb(27, 45, 54)!important; 
+    color:rgb(167, 255, 239) !important;
+    border: 2px solid white;
+    border-radius: 15%;
+    border-width: 10px;
+    width: 70%;
+    min-width: 140px;
+    max-width: 750px;
+    height: auto;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 #login{
