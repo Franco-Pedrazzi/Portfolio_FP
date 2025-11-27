@@ -1,23 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body{
-    background-color: rgb(54, 91, 109);
-
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    max-width: 100%;
 }
+
 h1{
-    font-size: 1em;
-    font-weight: 400px;
-    font-family: YADK4PDlAAM_0, auto;
-    color: rgb(65, 193, 186);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, auto;
+    color: rgb(248, 255, 49);
     text-decoration-thickness: initial;
     text-decoration-style: initial;
 }
 
 h2{
-    font-size: 1em;
     font-weight: 700;
-    font-style: normal;
-    color: rgb(167, 255, 239);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(255, 186, 58);
     font-kerning: none;
     text-decoration-line: none;
     text-decoration-thickness: initial;
@@ -25,11 +24,9 @@ h2{
 }
 
 h5,h3,h4,h6{
-    
-    font-size: 1em;
-    font-weight: 700;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: normal;
-    color: rgb(167, 255, 239);
+    color: rgb(255, 255, 255);
     font-kerning: none;
     text-decoration-line: none;
     text-decoration-thickness: initial;
@@ -47,7 +44,7 @@ a{
 }
 .iframe{
     padding: 10px !important;
-    background-color:rgb(27, 45, 54)!important; 
+    background-color:rgb(32, 32, 32)!important; 
     color:rgb(167, 255, 239) !important;
     border: 2px solid white;
     border-radius: 15%;
@@ -69,6 +66,7 @@ a{
 nav button{
     background: none;
     border: 0cm;
+
 }
 .bg-body-tertiary {
     --bs-bg-opacity: 1;
@@ -93,11 +91,6 @@ footer{
     width: 100%;
 }
 
-footer .form-control{
-    background-color: #161f2c;
-    border-color: #f2f6fa;
-    
-}
 input::placeholder {
     color: #f2f6fa;
     
@@ -110,7 +103,12 @@ input::placeholder {
     resize: vertical; 
 }
 
-
+@media (max-width: 768px) {
+  * {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
 .card-holder {
 	display: flex;
 	flex-direction: column;
@@ -134,5 +132,7 @@ input::placeholder {
     position: sticky !important;
     top: 0 !important;
     z-index: 10;
-
+    
 }
+
+

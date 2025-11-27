@@ -2,10 +2,10 @@
 
 {% block body %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   
 
-<div id="carouselExampleIndicators" data-bs-ride="carousel" class="carousel slide">
+<div id="carouselExampleIndicators" data-bs-ride="carousel" class="carousel slide" style="margin: 0% !important;">
   <div class="carousel-indicators">
     {% if len_carrucel>0 %}
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -37,32 +37,63 @@
   </button>
 </div>
 </div>
-<h1>Portfolio FP</h1>
-
 <center>
+  <h1 style="font-size: 120px !important;">Portfolio FP</h1>
+<div style="margin: 5%;">
+
+  
 {% if current_user.email and Len==0 %}
 <form method="POST" action="/Info/agregar" enctype="multipart/form-data">
     
     <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
     
-    <input type="text" name="tel" placeholder="tel"><br>
-    <input type="text" name="mail" placeholder="mail"><br>
-    <input type="text" name="dir" placeholder="dir"><br>
+     <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Telefono</span>
+      <input type="text" name="tel" placeholder="tel" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <br>
+     <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Mail</span>
+      <input type="text" name="mail" placeholder="mail" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <br>
+     <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Direccion</span>
+      <input type="text" name="dir" placeholder="tel" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <br>
     <textarea class="myLargeTextArea" name="sobre_mi" rows="10" cols="50" placeholder="sobre mi..."></textarea>
    <button type="submit">Agregar</button>
 </form>
 {% elif current_user.email %}
 <form method="post" action="/Info/editar" enctype="multipart/form-data">
-    <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
 
-        <img src="data:{{ Info.0.tipo }};base64,{{ pixel }}"
-        style="width:15%; height:15%; object-fit:cover; margin:5px; border-radius: 50%;">
+  <div style="display: flex; margin-left: 20%; margin-right: 20%;" >
+<div>    
+  <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
+
+    <img src="data:{{ Info.0.tipo }};base64,{{ pixel }}" style="width:300px; height:300px; object-fit:cover; margin:5px; border: white,solid; border-width: 5px; border-radius: 50%;">
+   </div>                 
+<div style="margin: 5%;">
+     <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Telefono</span>
+      <input type="text" name="tel" placeholder="tel" value="{{Info.0.tel}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <br>
+     <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Mail</span>
+      <input type="text" name="mail" placeholder="mail" value="{{Info.0.mail}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <br>
+     <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Dirreccion</span>
+      <input type="text" name="dir" placeholder="dir" value="{{Info.0.dir}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <br>
+  </div>
+</div>
 
 
-        <br>
-    <h6>Telefono:<input type="text" name="tel" value="{{Info.0.tel}}" placeholder="tel" required></h6>
-    <h6>Mail:<input name="mail" type="text" value="{{Info.0.mail}}" placeholder="mail" required></h6>
-    <h6>dir:<input name="dir" type="text" value="{{Info.0.dir}}" placeholder="dir" required></h6>
     <br>
     <br>
     <textarea class="myLargeTextArea"   name="sobre_mi" rows="10" cols="50" placeholder="sobre mi...">{{Info.0.sobre_mi}}</textarea>
@@ -72,16 +103,21 @@
 </form>
 {% elif Len!=0 %}
     <div>
+      <div style="display: flex; padding-left: 25%;">
                     <img src="data:{{ Info.0.tipo }};base64,{{ pixel }}"
-                    style="width:25%; height:25%; object-fit:cover; margin:5px; border-radius: 50%;">
-
-                    <h6><img src="/static/images/phone_icon.png" style="height: 20px;width: 20px;" alt=""> {{Info.0.tel}}</h6>
-                    <h6><img src="/static/images/mail_icon.png" style="height: 20px;width: 20px;" alt=""> {{Info.0.mail}}</h6>
-                    <h6><img src="/static/images/map_icon.webp" style="height: 15px;width: 10px;" alt=""> {{Info.0.dir}}</h6>
+                    style="width:300px; height:300px; object-fit:cover; margin:5px; border: white,solid; border-width: 5px; border-radius: 50%;">
+                    <div>
+                    <h1>Franco Pedrazzi</h1>
+                    <h4><img src="/static/images/phone_icon.png" style="height: 20px;width: 20px;" alt=""> {{Info.0.tel}}</h4>
+                    <h4><img src="/static/images/mail_icon.png" style="height: 20px;width: 20px;" alt=""> {{Info.0.mail}}</h4>
+                    <h4><img src="/static/images/map_icon.webp" style="height: 15px;width: 10px;" alt=""> {{Info.0.dir}}</h4>
+                    
+                    </div>
+                    </div>
                     <br>
                     <br>
                     
-                    <h5>{{Info.0.sobre_mi}}</h5>
+                    <h3>{{Info.0.sobre_mi}}</h3>
                     <br>
                     <br>
     </div>
@@ -98,22 +134,33 @@
 
   {% if current_user.email %}
                   {% for proyecto in Proyectos %}
-                  <div id="{{proyecto.titulo }}" style="display: flex;">
+                  <div id="{{proyecto.titulo }}" style="display: flex; padding-left: 15%;">
                   <br>
                     <form method="POST" action="/Proyecto/editar/{{proyecto.id}}" enctype="multipart/form-data">
-                    <input type="text" name="titulo" placeholder="titulo" value="{{proyecto.titulo}}"><br>
-                    <div style="display: flex;">
-                    <textarea class="myLargeTextArea" name="descripcion" rows="10" cols="50" placeholder="descripcion">{{proyecto.descripcion}}</textarea>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Titulo</span>
+                    <input type="text"name="titulo" placeholder="titulo" value="{{proyecto.titulo}}"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                    <br>
+                    <div style="display: flex; gap: 5%;">
+                    <textarea class="myLargeTextArea  is-info" name="descripcion" rows="10" cols="100"  placeholder="descripcion">{{proyecto.descripcion}}</textarea>
                     <div>
                     <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
                     <img src="data:{{ proyecto.tipo }};base64,{{ pixel_proyecto[Proyectos.index(proyecto)] }}"
-                    style="width:75%; height:75%;">
+                    style="width:100%; height:100%;">
                     </div>
+                    
                     </div>
-                    <input type="text" name="link" placeholder="link" value="{{proyecto.link}}"><br>
+                    <br>
+                    <br>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Link</span>
+                    <input type="text" name="link" placeholder="link" value="{{proyecto.link}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                   <br>
                 <button type="submit">editar</button>
                   </form>
-                  <a  style="margin-top: 10%;" href="/Proyecto/delete/{{proyecto.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
+                  <a  style="margin-top: 10%; margin-left: 3%;" href="/Proyecto/delete/{{proyecto.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
 
                   </div>
 
@@ -121,10 +168,17 @@
                   <br>
                   {% endfor %}
                 <form method="POST" action="/Proyecto/agregar" enctype="multipart/form-data">
-                    <input type="text" name="titulo" placeholder="titulo" ><br>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Titulo</span>
+                    <input type="text" name="titulo" placeholder="titulo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                    <br>
                     <input type="file" id="archivo" name="archivo" placeholder="archivo"><br>
                     <textarea class="myLargeTextArea" name="descripcion" rows="10" cols="50" placeholder="descripcion"></textarea>
-                    <input type="text" name="link" placeholder="link"><br>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Link</span>
+                    <input type="text" name="link" placeholder="link" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  </div>
 
                     <button type="submit">Agregar</button>
                 </form>
@@ -135,12 +189,12 @@
     <br>
     <h2>{{proyecto.titulo}}</h2>
     <div style="display: flex; gap:25%; margin-left: 15%;">
-        <h5 style="width: 40%; 
+        <h3 style="width: 40%; 
                    word-wrap: break-word; 
                    overflow-wrap: break-word; 
                    white-space: normal;"> 
             {{proyecto.descripcion}}
-        </h5>
+        </h3>
         
         <img src="data:{{ proyecto.tipo }};base64,{{ pixel_proyecto[Proyectos.index(proyecto)] }}"
              style="width:33%; height:33%;">
@@ -169,7 +223,6 @@
                   </div>
 
                   <a  style="margin-top: 10%;" href="/Experiencia/delete/{{Experiencia.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
-                  </div>
 
                   <br>
                   <br>
@@ -187,7 +240,7 @@
            white-space: normal;">
     <br>
     <li>
-<h5>{{Experiencia.exp}}</h5>
+<h3>{{Experiencia.exp}}</h3>
     </li>
     
     <br>
@@ -196,12 +249,11 @@
                   {% endfor %}
 {% endif %}
 </div>
-</div>
-<div id="Educacion">
+<div id="Estudios&Habilidades">
 <br>
 <br>
 <br>
-<h1>Educacion</h1>
+<h1>Educacion / Habilidades</h1>
 
   {% if current_user.email %}
                   {% for Educacion in Educaciones %}
@@ -213,8 +265,8 @@
                   </form>
                   </div>
 
-                  <a  style="margin-top: 10%;" href="/Educacion/delete/{{Experiencia.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
-                  </div>
+                  <a  style="margin-top: 10%;" href="/Educacion/delete/{{Educacion.id}}"><img src="/static/images/delete_icon.png" style="height: 20px;width: 20px;"></a>
+                  
 
                   <br>
                   <br>
@@ -232,7 +284,7 @@
            white-space: normal;">
     <br>
     <li>
-<h5>{{Educacion.edu}}</h5>
+<h3>{{Educacion.edu}}</h3>
     </li>
     
     <br>
@@ -241,8 +293,8 @@
                   {% endfor %}
 {% endif %}
 </div>
+
+</div>
 </center>
-
-
 
 {% endblock %}

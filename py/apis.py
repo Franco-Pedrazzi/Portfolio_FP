@@ -2,6 +2,7 @@
 from flask import Blueprint, request, jsonify,redirect
 from py.db import db
 import base64
+from py.LyS import current_user
 
 apis = Blueprint("apis", __name__)
 
@@ -53,6 +54,7 @@ def validate_fields(data, required):
 
 @apis.route("/Info/agregar", methods=["POST","Get"])
 def add_Info():
+
     data = request.form
 
     archivo = request.files.get("archivo")
@@ -87,6 +89,7 @@ def add_Info():
 
 @apis.route("/Info/editar", methods=["POST","Get"])
 def update_info():
+    
     data = request.form
     info=Info.query.first()
     archivo = request.files.get("archivo")
@@ -139,6 +142,7 @@ def delete_url(id):
 
 @apis.route("/Proyecto/agregar", methods=["POST","Get"])
 def add_Proyect():
+    
     data = request.form
 
 
@@ -173,6 +177,7 @@ def add_Proyect():
 
 @apis.route("/Proyecto/editar/<int:id>", methods=["POST","Get"])
 def update_Proyect(id):
+    
     data = request.form
     Proyecto=Proyectos.query.filter_by(id=id).first()
     archivo = request.files.get("archivo")
@@ -212,6 +217,7 @@ def delete_Proyecto(id):
 
 @apis.route("/Experiencia/agregar", methods=["POST","Get"])
 def add_Experiencia():
+    
     data = request.form
     experiencia=data.get("Experiencia")
     nuevo = Experiencia(
@@ -227,6 +233,7 @@ def add_Experiencia():
 
 @apis.route("/Experiencia/editar/<int:id>", methods=["POST","Get"])
 def update_Experiencia(id):
+    
     data = request.form
     _Experiencia=Experiencia.query.filter_by(id=id).first()
        
@@ -242,6 +249,8 @@ def update_Experiencia(id):
 
 @apis.route("/Experiencia/delete/<int:id>")
 def delete_Experiencia(id):
+    if not current_user.is_authenticated:
+        return
     _Experiencia = Experiencia.query.get_or_404(id)
     db.session.delete(_Experiencia)
     db.session.commit()
@@ -266,6 +275,7 @@ def add_Educacion():
 
 @apis.route("/Educacion/editar/<int:id>", methods=["POST","Get"])
 def update_Educacion(id):
+    
     data = request.form
     _Educacion=Educacion.query.filter_by(id=id).first()
        
