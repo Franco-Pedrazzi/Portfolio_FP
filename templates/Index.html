@@ -6,14 +6,7 @@
   
 
 <div id="carouselExampleIndicators" data-bs-ride="carousel" class="carousel slide" style="margin: 0% !important;">
-  <div class="carousel-indicators">
-    {% if len_carrucel>0 %}
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    {% endif %}
-    {% for i in range(1,len_carrucel) %}
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{i}}" aria-label="Slide {{i+1}}"></button>
-    {% endfor %}
-</div>
+
   <div class="carousel-inner" style="text-align: center;">
     {% if len_carrucel>0 %}
     <div class="carousel-item active">
@@ -27,18 +20,21 @@
     </a>
       </div>
     {% endfor %}
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <button class="carousel-control-prev btn-carousel" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <button class="carousel-control-next btn-carousel" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
 </div>
 </div>
 <center>
-  <h1 style="font-size: 120px !important;">Portfolio FP</h1>
+  <h1 style="font-size: 120px !important;
+           word-wrap: break-word; 
+           overflow-wrap: break-word; 
+           white-space: normal; ">Portfolio FP</h1>
 <div style="margin: 5%;">
 
   
@@ -103,7 +99,7 @@
 </form>
 {% elif Len!=0 %}
     <div>
-      <div style="display: flex; padding-left: 25%;">
+      <div>
                     <img src="data:{{ Info.0.tipo }};base64,{{ pixel }}"
                     style="width:300px; height:300px; object-fit:cover; margin:5px; border: white,solid; border-width: 5px; border-radius: 50%;">
                     <div>
@@ -233,20 +229,21 @@
                   </form>
 <br>
 {% else %}
-                  {% for Experiencia in Experiencias %}
+                  
 <ul style="max-width: 75%;   
            word-wrap: break-word; 
            overflow-wrap: break-word; 
            white-space: normal;">
     <br>
+    {% for Experiencia in Experiencias %}
     <li>
 <h3>{{Experiencia.exp}}</h3>
     </li>
-    
+    {% endfor %}
     <br>
     <br>
 </ul>
-                  {% endfor %}
+                  
 {% endif %}
 </div>
 <div id="Estudios&Habilidades">
@@ -277,20 +274,21 @@
                   </form>
 <br>
 {% else %}
-                  {% for Educacion in Educaciones %}
+                 
 <ul style="max-width: 75%;   
            word-wrap: break-word; 
            overflow-wrap: break-word; 
            white-space: normal;">
     <br>
+     {% for Educacion in Educaciones %}
     <li>
 <h3>{{Educacion.edu}}</h3>
     </li>
-    
+     {% endfor %}
     <br>
     <br>
 </ul>
-                  {% endfor %}
+                 
 {% endif %}
 </div>
 

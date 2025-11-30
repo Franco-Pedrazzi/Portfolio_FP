@@ -1,7 +1,10 @@
 {% extends "./base.html" %}
 
 {% block body %}
+<center>
+<div style=" width: 33%; text-align: center;">
 <h2>Login</h2>
+
 <form action="/login" method="POST">
   {{ form.csrf_token }}
 <div class="input-group mb-3">
@@ -21,6 +24,10 @@
 <h3>{{info}}</h3>
 {% endif %}
 <div id="mensaje"></div>
+</div>
+
+</center>
+
 
 
 {% endblock %}

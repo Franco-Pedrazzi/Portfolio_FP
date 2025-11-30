@@ -21,6 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{user}:{passwornd}@{ho
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'secret'
 
+
 db.init_app(app)
 
 app.register_blueprint(rutas)

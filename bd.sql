@@ -1,4 +1,5 @@
-use b3hubfo1iexviornmm0i;
+create table Portfolio;
+use Portfolio;
 
 CREATE TABLE `usuario` (
   `Email` VARCHAR(40) not NULL,
